@@ -15,7 +15,8 @@ use App::cpanminus::CPANVersion;
 
 our $VERSION = '0.04';
 our $VERBOSE = 0;
-our $ALLOW_DEV_VERSION = 0;
+our $ALLOW_DEV_VERSION = 1;
+our $FORK = 0;
 
 sub new {
     my ($class, $meta) = @_;
