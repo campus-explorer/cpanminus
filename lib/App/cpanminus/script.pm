@@ -724,14 +724,14 @@ sub search_module {
 
     MIRROR: for my $mirror (@{ $self->{mirrors} }) {
         $self->mask_output( chat => "Searching $module on mirror $mirror ...\n" );
-        my $name = '02packages.details.txt.gz';
+        my $name = '02packages.details.txt';
         my $uri  = "$mirror/modules/$name";
-        my $gz_file = $self->package_index_for($mirror) . '.gz';
+        my $file = $self->package_index_for($mirror);
 
         unless ($self->{pkgs}{$uri}) {
             $self->mask_output( chat => "Downloading index file $uri ...\n" );
-            $self->mirror($uri, $gz_file);
-            $self->generate_mirror_index($mirror) or next MIRROR;
+            $self->mirror($uri, $file);
+            # $self->generate_mirror_index($mirror) or next MIRROR;
             $self->{pkgs}{$uri} = "!!retrieved!!";
         }
 

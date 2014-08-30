@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# Patched by CE, branch 'our_1.7004'
+# patched by CE, branch 'our_1.7004'
 #
 # You want to install cpanminus? Run the following command and it will
 # install itself for you. You might want to run it as a root with sudo
@@ -1766,14 +1766,14 @@ $fatpacked{"App/cpanminus/script.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\
   
       MIRROR: for my $mirror (@{ $self->{mirrors} }) {
           $self->mask_output( chat => "Searching $module on mirror $mirror ...\n" );
-          my $name = '02packages.details.txt.gz';
+          my $name = '02packages.details.txt';
           my $uri  = "$mirror/modules/$name";
-          my $gz_file = $self->package_index_for($mirror) . '.gz';
+          my $file = $self->package_index_for($mirror);
   
           unless ($self->{pkgs}{$uri}) {
               $self->mask_output( chat => "Downloading index file $uri ...\n" );
-              $self->mirror($uri, $gz_file);
-              $self->generate_mirror_index($mirror) or next MIRROR;
+              $self->mirror($uri, $file);
+              # $self->generate_mirror_index($mirror) or next MIRROR;
               $self->{pkgs}{$uri} = "!!retrieved!!";
           }
   
